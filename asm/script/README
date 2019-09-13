@@ -1,0 +1,8 @@
+Il faut mettre les binaires dans le dossier bin
+- asm (le notre)
+- asm-o (asm orignial)
+
+Dans le dossier files, tous les .s que l'on veut tester
+files/*.s (tous les .s)
+
+Lancer le script à la racine
