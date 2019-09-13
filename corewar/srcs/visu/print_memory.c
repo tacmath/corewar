@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/09/12 17:38:23 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/12 17:39:08 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/13 12:39:01 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -74,9 +74,7 @@ void		print_memory(t_vm *vm)
 
 	m = ft_sqrt(MEM_SIZE);
 	n = -1;
-	coord.x = vm->visu.arena_coord.x;
-	coord.y = vm->visu.arena_coord.y;
-	SDL_BlitSurface(vm->visu.arena, 0, vm->visu.window_surface, &coord);
+	SDL_BlitSurface(vm->visu.arena, 0, vm->visu.window_surface, &vm->visu.arena_coord);
 	ft_bzero(&printed, sizeof(SDL_Rect));
 	while (++n < MEM_SIZE)
 	{

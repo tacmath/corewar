@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/14 10:55:53 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/12 15:00:20 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/13 12:38:32 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -74,11 +74,7 @@ static int	print_info_log(t_vm *vm)
 
 void		print_log(t_vm *vm)
 {
-	SDL_Rect coord;
-
-	coord.x = vm->visu.log_coord.x;
-	coord.y = vm->visu.log_coord.y;
-	SDL_BlitSurface(vm->visu.log, 0, vm->visu.window_surface, &coord);
+	SDL_BlitSurface(vm->visu.log, 0, vm->visu.window_surface, &vm->visu.log_coord);
 	print_jauge(vm);
 	print_info_log(vm);
 }
