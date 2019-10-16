@@ -15,7 +15,7 @@
 
 int		print_usage(void)
 {
-	ft_dprintf(2, "usage: ./corewar [-vg] [-dump nbr_cycles] [[-n number] ");
+	ft_dprintf(2, "usage: ./corewar [-vg] [-d nbr_cycles] [[-n number] ");
 	ft_dprintf(2, "champion1.cor]. Max players: %d\n", MAX_PLAYERS);
 	return (0);
 }

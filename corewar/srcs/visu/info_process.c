@@ -20,7 +20,7 @@ static int	treat_info_process(t_vm *vm, char **info, t_process process)
 
 	if (!(info[0] = ft_strdup("process"))
 			|| !(info[1] = ft_itoa(process.num))
-			|| !(info[2] = get_champ_name(vm, process.champ_id, 10))
+			|| !(info[2] = get_champ_name(vm, process.visu_id, 10))
 			|| !(info[3] = ft_itoa(process.carry))
 			|| !(info[6] = ft_itoa(process.cycles_left)))
 		return (0);

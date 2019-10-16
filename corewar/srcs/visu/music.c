@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/14 10:56:31 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/12 18:05:47 by lperron     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/20 13:52:54 by lperron     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -69,7 +69,7 @@ char	*get_groove(char *path)
 		ft_super_free(2, path, file_name);
 		return (NULL);
 	}
-	n = rand() % n;
+	n = rand() / (RAND_MAX / n + 1);
 	if (!(file_path = ft_strjoin(path, file_name[n])))
 		return (0);
 	free(path);
@@ -94,11 +94,9 @@ void	play_music(t_vm *vm)
 	else if (!(tmp = get_groove(ft_strjoin_mult(4, vm->visu.path,
 						ASSET_PATH, SOUND_PATH, "non_kitch/"))))
 		return ;
-	if (!(vm->visu.mus = Mix_LoadMUS(tmp)))
-	{
-		free(tmp);
-		return ;
-	}
+	vm->visu.mus = Mix_LoadMUS(tmp);
 	free(tmp);
+	if (!vm->visu.mus || Mix_PlayMusic(vm->visu.mus, -1))
+		return ;
 	Mix_Volume(-1, MIX_MAX_VOLUME / 4);
 }

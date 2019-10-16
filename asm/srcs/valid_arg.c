@@ -6,7 +6,7 @@
 /*   By: krambono <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/21 15:20:10 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/06/21 16:09:06 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/27 14:42:37 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -32,13 +32,10 @@ char	*valid_arg_register(t_arg_type *arg)
 	int	i;
 	int	nb;
 
-	i = 1;
-	while (arg[i])
-	{
-		if (!ft_isdigit(arg[i]) && i > 1)
+	i = 0;
+	while (arg[++i])
+		if (!ft_isdigit(arg[i]) || i >= 3)
 			return (WRONG_FORMAT);
-		i++;
-	}
 	if (i == 1)
 		return (WRONG_FORMAT);
 	nb = ft_atoi(arg + 1);

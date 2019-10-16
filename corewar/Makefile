@@ -6,7 +6,7 @@
 #    By: krambono <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/11/09 13:02:16 by krambono     #+#   ##    ##    #+#        #
-#    Updated: 2019/09/12 19:16:00 by lperron     ###    #+. /#+    ###.fr      #
+#    Updated: 2019/09/17 13:26:22 by mtaquet     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -29,7 +29,7 @@ OBJ= $(SRC:.c=.o)
 # COMPILATEUR
 CC =		gcc
 CFLAGS =	-Wall -Wextra -Werror
-SDLFLAGS = $(shell sdl2-config --libs) -lSDL2_ttf -lSDL2_image -lSDL2_mixer -lncurses -O3
+SDLFLAGS = $(shell sdl2-config --libs) -lSDL2_ttf -lSDL2_image -lSDL2_mixer -O3
 
 # LIBS
 libft =		../libft/
@@ -46,7 +46,7 @@ $(NAME): $(OBJ) $(libft)
 
 %.o: %.c $(HEADERS)
 	@printf "\033[2K\r\033[36m>>Compiling \033[37m$<\033[36m \033[0m"
-	@$(CC) $(CFLAGS) -o $@ -c $< -I SDL_include -I includes -I ../libft/includes
+	@$(CC) $(CFLAGS) -o $@ -c $< -I includes/SDL_include -I includes -I ../libft/includes
 
 .PHONY: clean fclean re libs
 

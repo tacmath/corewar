@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/18 13:24:57 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/06 18:37:05 by lperron     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/29 14:15:17 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -68,7 +68,6 @@ struct							s_asm
 	t_instr						*instrs;
 	int							nb_instrs;
 	char						*file_name;
-	char						flags[127];
 	t_instr_asm					*instrs_asm;
 	int							size;
 	int							line;

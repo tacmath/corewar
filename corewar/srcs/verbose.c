@@ -34,7 +34,7 @@ void	verbose_end(t_vm *vm)
 		ft_printf("Draw\n");
 	else
 	{
-		ft_printf("Contestant %d, \"%s\", has won !\n",
+		ft_printf("Contestant %u, \"%s\", has won !\n",
 		vm->champs_decoded[vm->last_live].id,
 		vm->champs_decoded[vm->last_live].header.prog_name);
 	}

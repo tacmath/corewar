@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ ! -d "cor" ]
+if [ ! -d "../cor" ]
 then
 	echo "cor folder is missing"
 	exit
@@ -10,7 +10,7 @@ GREEN='\033[0;32m'
 RED='\033[0;31m'
 NC='\033[0m'
 
-arr=(./cor/*)
+arr=(../cor/*)
 error=0 
 nb=1
 if [ $# -gt 0 ]
@@ -34,9 +34,9 @@ do
 	p3=$((RANDOM%${#arr[@]}))
 	p4=$((RANDOM%${#arr[@]}))
 	echo ${arr[$p1]} "VS" ${arr[$p2]} "VS" ${arr[$p3]} "VS" ${arr[$p4]}
-	./corewar ${arr[$p1]} ${arr[$p2]} ${arr[$p3]} ${arr[$p4]} -v > test1
-	../resources/corewar ${arr[$p1]} ${arr[$p2]} ${arr[$p3]} ${arr[$p4]} -v 31 > test2
-	diff test1 test2 > resdiff
+	../corewar ${arr[$p1]} ${arr[$p2]} ${arr[$p3]} ${arr[$p4]} -v > .tmp1
+	../../resources/corewar ${arr[$p1]} ${arr[$p2]} ${arr[$p3]} ${arr[$p4]} -v 31 > .tmp2
+	diff .tmp1 .tmp2 > resdiff
 	if [ $? -eq 0 ]
 	then
 		echo "${GREEN}OK${NC}"
@@ -54,6 +54,6 @@ fi
 echo "\033[1mErrors = $error / $nb${NC}\033[0m"
 if [ "$1" = "-d" ]
 then
-	rm -rf test1 test2 resdiff
+	rm -rf .tmp1 .tmp2 resdiff
 fi
 exit $error

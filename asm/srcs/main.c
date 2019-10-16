@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/18 14:37:19 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/06/24 13:28:46 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/29 14:16:50 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,28 +16,24 @@
 int		get_flags_and_file(t_asm *parse, int ac, char **av)
 {
 	int n;
-	int m;
 
 	n = 0;
 	while (++n < ac)
-		if (av[n][0] == '-' && !(m = 0))
-			while (av[n][++m])
-				parse->flags[(int)av[n][m]] = 1;
-		else if (!parse->file_name)
+		if (!parse->file_name)
 		{
 			if (av[n][ft_strlen(av[n]) - 1] == 's'
 				&& av[n][ft_strlen(av[n]) - 2] == '.')
 			{
 				if (!(parse->file_name = ft_strdup(av[n])))
-					return (!ft_printf("Usage: ./asm [-...] <sourcefile.s>"));
+					return (!ft_printf("Usage: ./asm <sourcefile.s>\n"));
 			}
 			else
 				return (!ft_printf("%s is not a .s file\n", av[n]));
 		}
 		else
-			return (!ft_printf("Usage: ./asm [-...] <sourcefile.s>"));
+			return (!ft_printf("Usage: ./asm <sourcefile.s>\n"));
 	if (!parse->file_name)
-		return (!ft_printf("Usage: ./asm [-...] <sourcefile.s>"));
+		return (!ft_printf("Usage: ./asm <sourcefile.s>\n"));
 	return (1);
 }
 
@@ -77,10 +73,13 @@ int		main(int ac, char **av)
 		return (free_asm(parse));
 	}
 	if (!get_comment_and_name(parse, fd)
-		|| !get_command_and_label(parse, fd)
-		|| close(fd) == -1)
+		|| !get_command_and_label(parse, fd))
+	{
+		get_next_line(fd, 0);
+		close(fd);
 		return (free_asm(parse));
-	if (!(error = compile(parse)))
+	}
+	if (close(fd) == -1 || !(error = compile(parse)))
 		return (free_asm(parse));
 	return (!free_asm(parse));
 }

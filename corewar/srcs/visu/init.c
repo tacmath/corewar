@@ -6,14 +6,14 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/14 10:56:15 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/12 16:37:52 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/29 13:57:45 by lperron     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	init_coord(t_vm *vm, int win_width, int win_height)
+void		init_coord(t_vm *vm, int win_width, int win_height)
 {
 	win_width = 1.77 * win_height;
 	vm->visu.win_len.w = win_width;
@@ -40,7 +40,7 @@ void	init_coord(t_vm *vm, int win_width, int win_height)
 	vm->visu.mem_len.w = ((vm->visu.memory_coord.w) / ft_sqrt(MEM_SIZE));
 }
 
-int		init_visu_if(t_vm *vm, int choice)
+int			init_visu_if(t_vm *vm, int choice)
 {
 	if (choice == 0)
 		return (
@@ -61,7 +61,16 @@ int		init_visu_if(t_vm *vm, int choice)
 		return (0);
 }
 
-int		init_visu(t_vm *vm)
+static void	init_process_visu(t_vm *vm)
+{
+	int	n;
+
+	n = -1;
+	while (++n < MEM_SIZE)
+		vm->arena.processes[n] = -1;
+}
+
+int			init_visu(t_vm *vm)
 {
 	srand(time(NULL));
 	init_coord(vm, WINDOWS_HEIGHT, WINDOWS_HEIGHT);
@@ -83,6 +92,7 @@ int		init_visu(t_vm *vm)
 	if (!init_champ_name(vm) || !resize_all_images(vm) || !init_info_text(vm))
 		return (0);
 	play_music(vm);
+	init_process_visu(vm);
 	vm->visu.frame_speed = SDL_GetTicks();
 	print_all(vm);
 	vm->visu.frame_speed = SDL_GetTicks() - vm->visu.frame_speed;

@@ -6,7 +6,7 @@
 /*   By: lperron <lperron@student.le-101.f>         +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/07/28 15:09:43 by lperron      #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/12 17:50:37 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/20 13:53:21 by lperron     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,6 +18,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <time.h>
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <sys/types.h>

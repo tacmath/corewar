@@ -6,7 +6,7 @@
 #    By: krambono <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/11/09 13:02:16 by krambono     #+#   ##    ##    #+#        #
-#    Updated: 2019/09/12 19:16:27 by lperron     ###    #+. /#+    ###.fr      #
+#    Updated: 2019/09/29 14:34:00 by mtaquet     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -40,6 +40,7 @@ all: libs $(NAME)
 $(NAME): $(OBJ) $(libft)
 	@printf "\033[2K\r\033[36m>>Linking...\033[0m\c"
 	@$(CC) -o $@ $(OBJ) -I includes ../libft/libft.a
+	@cp $(NAME) $(addprefix script/bin/, $(NAME))
 	@echo "\t\033[32m[OK]\033[0m"
 	@echo "\033[31m...ASM\033[0m"
 
@@ -61,5 +62,6 @@ fclean:	clean
 	@make -s -C $(libft) fclean
 	@echo "\033[31mCleaning $(NAME)\033[0m"
 	@rm -f $(NAME)
+	@rm -f $(addprefix script/bin/, $(NAME))
 
 re:		fclean all

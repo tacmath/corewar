@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/21 15:20:46 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/12 15:34:09 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/28 14:10:15 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -76,14 +76,14 @@ int		get_comment_and_name(t_asm *parse, int fd)
 	comment = 0;
 	while ((n = -1))
 	{
-		if (get_next_line(fd, &line) < 1 && ft_dprintf(2, "file empty\n"))
+		if (get_next_line(fd, &line) < 1 &&
+			ft_dprintf(2, "name or comment not found\n"))
 			return (ft_super_free(2, name, comment));
 		parse->line++;
-		remove_comment(line);
 		while (line[++n] == ' ' || line[n] == '\t')
 			;
-		if (line[n] && !get_comment(fd, &line[n], &comment, parse)
-				&& !get_name(fd, &line[n], &name, parse))
+		if (line[n] && line[n] != COMMENT_CHAR && !get_comment(fd, &line[n],
+			&comment, parse) && !get_name(fd, &line[n], &name, parse))
 			return (ft_printf("Invalid name or comment\n")
 					&& ft_super_free(3, line, name, comment));
 			free(line);

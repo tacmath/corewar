@@ -13,8 +13,7 @@ then
 	nb2=$2
 fi
 
-make -C ../asm
-make
+make -C ../../
 sh testos.sh $nb1
 error=$?
 sh dumpos.sh -r $nb2

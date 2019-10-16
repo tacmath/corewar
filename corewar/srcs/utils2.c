@@ -6,7 +6,7 @@
 /*   By: lperron <lperron@student.le-101.f>         +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/07/27 22:39:17 by lperron      #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/17 15:26:35 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/29 14:01:46 by lperron     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -56,5 +56,7 @@ int		memdump(t_vm *vm)
 		ft_putchar('\n');
 		n += 64;
 	}
+	if (vm->options.visu)
+		quit_visu(vm);
 	return (1);
 }

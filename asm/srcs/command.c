@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/21 15:20:10 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/12 15:41:52 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/29 15:13:38 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,18 +15,17 @@
 
 int	get_one_arg(t_instr *tmp, char **line)
 {
-	int	n;
-	int ret;
+	int		n;
+	int		ret;
+	char	*tmp_line;
 
-	if ((*line)[-1] == SEPARATOR_CHAR &&
-		(*line = jump_space(*line)) && !(*line)[0])
-	{
-		ft_dprintf(2, "Syntax error line %d\n", tmp->line);
-		return (0);
-	}
+	tmp_line = *line;
 	*line = jump_space(*line);
 	if (!(*line)[0])
+	{
+		*line = tmp_line;
 		return (1);
+	}
 	ret = 0;
 	n = -1;
 	while ((*line)[++n] && (*line)[n] != SEPARATOR_CHAR)
@@ -73,19 +72,21 @@ int	get_all_args(t_asm *parse, char *line, t_instr tmp)
 			return (ft_super_free(4, tmp.command, tmp.args[0],
 					tmp.args[1], tmp.args[2]));
 		}
-	line = jump_space(line);
-	if (line[0])
+	if (line[-1] == SEPARATOR_CHAR && (line = jump_space(line)) && !line[0])
 	{
-		ft_printf("too many arg\n");
-		return (ft_super_free(4, tmp.command,
-			tmp.args[0], tmp.args[1], tmp.args[2]));
+		ft_super_free(4, tmp.command, tmp.args[0], tmp.args[1], tmp.args[2]);
+		return (!ft_dprintf(2, "Syntax error line %d\n", tmp.line));
+	}
+	if ((line = jump_space(line)) && line[0])
+	{
+		ft_super_free(4, tmp.command, tmp.args[0], tmp.args[1], tmp.args[2]);
+		return (!ft_dprintf(2,
+		"Error line %d : too many arguments\n", tmp.line));
 	}
 	if (!command_realloc(parse, tmp))
-	{
 		return (ft_super_free(4, tmp.command,
-			tmp.args[0], tmp.args[1], tmp.args[2]));
-	}
-	return (1);
+					tmp.args[0], tmp.args[1], tmp.args[2]));
+		return (1);
 }
 
 int	get_command(t_asm *parse, char *line)
@@ -97,7 +98,8 @@ int	get_command(t_asm *parse, char *line)
 	if (line[0] == SEPARATOR_CHAR)
 	{
 		return (!ft_dprintf(2,
-		"The line %d begins with a f*cking coma biatch 🤦‍♀️ 🤦\n", parse->line));
+		"The command line %d begins with a f*cking coma biatch 🤦‍♀️ 🤦\n",
+		parse->line));
 	}
 	if (!line[0])
 		return (1);

@@ -1,13 +1,13 @@
 #!/bin/bash
 
-if [ ! -d "cor" ]
+if [ ! -d "../cor" ]
 then
 	echo "cor folder is missing"
 	exit
 fi
 
 
-arr=(./cor/*)
+arr=(../cor/*)
 p1=$((RANDOM%${#arr[@]}))
 p2=$((RANDOM%${#arr[@]}))
 p3=$((RANDOM%${#arr[@]}))
@@ -28,9 +28,9 @@ then
 		p3=$((RANDOM%${#arr[@]}))
 		p4=$((RANDOM%${#arr[@]}))
 		echo ${arr[$p1]} "VS" ${arr[$p2]} "VS" ${arr[$p3]} "VS" ${arr[$p4]} "cycle" $cycle
-		./corewar -d $cycle ${arr[$p1]} ${arr[$p2]} ${arr[$p3]} ${arr[$p4]} > test1
-		../resources/corewar -d $cycle ${arr[$p1]} ${arr[$p2]} ${arr[$p3]} ${arr[$p4]} > test2
-		diff test1 test2 > resdiff
+		../corewar -d $cycle ${arr[$p1]} ${arr[$p2]} ${arr[$p3]} ${arr[$p4]} > .tmp1
+		../../resources/corewar -d $cycle ${arr[$p1]} ${arr[$p2]} ${arr[$p3]} ${arr[$p4]} > .tmp2
+		diff .tmp1 .tmp2 >> resdiff
 		if [ $? -eq 0 ]
 		then
 			echo "${GREEN}OK${NC}"
@@ -57,9 +57,9 @@ fi
 if [ $# -le 1 ]
 then
 	echo ${arr[$p1]} "VS" ${arr[$p2]} "VS" ${arr[$p3]} "VS" ${arr[$p4]} "cycle" $cycle
-	./corewar -d $cycle ${arr[$p1]} ${arr[$p2]} ${arr[$p3]} ${arr[$p4]} > test1
-	../resources/corewar -d $cycle ${arr[$p1]} ${arr[$p2]} ${arr[$p3]} ${arr[$p4]} > test2
-	diff test1 test2 > resdiff
+	../corewar -d $cycle ${arr[$p1]} ${arr[$p2]} ${arr[$p3]} ${arr[$p4]} > .tmp1
+	../../resources/corewar -d $cycle ${arr[$p1]} ${arr[$p2]} ${arr[$p3]} ${arr[$p4]} > .tmp2
+	diff .tmp1 .tmp2 >> resdiff
 	if [ $? -eq 0 ]
 	then
 		echo "${GREEN}OK${NC}"
@@ -71,9 +71,9 @@ else
 	echo ${arr[$p1]} "VS" ${arr[$p2]} "VS" ${arr[$p3]} "VS" ${arr[$p4]} "cycle" $cycle "to" $(( $cycle + $2 ))
 	for (( n=$cycle; n<($cycle+$2); n++ ))
 	do
-		./corewar -d $n ${arr[$p1]} ${arr[$p2]} ${arr[$p3]} ${arr[$p4]} > test1
-		../resources/corewar -d $n ${arr[$p1]} ${arr[$p2]} ${arr[$p3]} ${arr[$p4]} > test2
-		diff test1 test2 > resdiff
+		../corewar -d $n ${arr[$p1]} ${arr[$p2]} ${arr[$p3]} ${arr[$p4]} > .tmp1
+		../../resources/corewar -d $n ${arr[$p1]} ${arr[$p2]} ${arr[$p3]} ${arr[$p4]} > .tmp2
+		diff .tmp1 .tmp2 >> resdiff
 		if [ $? -ne 0 ]
 		then
 			echo "${RED}/!\\KO/!\\ cycle $n${NC} "
