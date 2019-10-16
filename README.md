@@ -78,5 +78,5 @@ It can be really helpful since one of the major difficulties of this project is 
 # Video
 
 <figure>
-  <img src="" alt="Corewar's graphical interface using SDL" style="width:100%">
+  <img src="https://github.com/tacmath/assets/blob/master/DemoCorewar.gif" alt="Corewar's graphical interface using SDL" style="width:100%">
 </figure> 
