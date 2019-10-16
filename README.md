@@ -61,22 +61,22 @@ It can be really helpful since one of the major difficulties of this project is 
 ## Screenshots
 
  <figure>
-  <img src="https://gitlab.com/lperron/corewar/raw/master/screenshots/CorewarInstr.png" alt="Memory explorer" style="width:100%">
+  <img src="https://github.com/tacmath/corewar/blob/master/screenshots/CorewarInstr.png" alt="Memory explorer" style="width:100%">
   <figcaption>Memory explorer</figcaption>
 </figure>
 
  <figure>
-  <img src="https://gitlab.com/lperron/corewar/raw/master/screenshots/CorewarProc1.png" alt="Process explorer (general)" style="width:100%">
+  <img src="https://github.com/tacmath/corewar/blob/master/screenshots/CorewarProc1.png" alt="Process explorer (general)" style="width:100%">
   <figcaption>Process explorer (general)</figcaption>
 </figure> 
 
  <figure>
-  <img src="https://gitlab.com/lperron/corewar/raw/master/screenshots/CorewarProc2.png" alt="Process explorer (registers)" style="width:100%">
+  <img src="https://github.com/tacmath/corewar/blob/master/screenshots/CorewarProc2.png" alt="Process explorer (registers)" style="width:100%">
   <figcaption>Process explorer (registers)</figcaption>
 </figure> 
 
 # Video
 
 <figure>
-  <img src="https://gitlab.com/lperron/files_for_other_projects/raw/master/DemoCorewar.mp4" alt="Corewar's graphical interface using SDL" style="width:100%">
+  <img src="" alt="Corewar's graphical interface using SDL" style="width:100%">
 </figure> 
